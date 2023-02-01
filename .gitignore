@@ -1,0 +1,5 @@
+training/dreambooth/*
+!training/dreambooth/template
+
+training/embeddings/*
+!training/embeddings/template

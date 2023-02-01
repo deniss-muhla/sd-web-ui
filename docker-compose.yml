@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+    stable-diffusion-webui:
+        container_name: stable-diffusion-webui
+        image: stable-diffusion-webui
+        build: .
+        command: nvidia-smi
+        tmpfs:
+            - /tmp
+        privileged: true
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: nvidia
+                          count: all
+                          capabilities: [gpu]
