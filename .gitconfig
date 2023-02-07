@@ -1,0 +1,5 @@
+[user]
+	name = Deniss Muhļa
+	email = deniss.muhla@gmail.com
+[credential]
+	helper = "!f() { /home/dockeruser/.vscode-server/bin/e2816fe719a4026ffa1ee0189dc89bdfdbafb164/node /tmp/vscode-remote-containers-ba7c0ad9837163bad06924b85479dda9179b82ba.js git-credential-helper $*; }; f"

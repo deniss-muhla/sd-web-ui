@@ -1,5 +1,11 @@
-training/dreambooth/*
-!training/dreambooth/template
+packages/.*
 
+models/stable-diffusion/*
+
+training/dreambooth/*
 training/embeddings/*
-!training/embeddings/template
+
+outputs/stable-diffusion-webui/*/*
+
+tmp/*
+!.gitkeep
