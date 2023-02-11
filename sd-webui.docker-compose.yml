@@ -1,40 +1,34 @@
 version: "3.8"
 
 services:
-    stable-diffusion-webui:
-        container_name: stable-diffusion-webui
-        image: stable-diffusion-webui
+    sd-webui:
+        container_name: sd-webui
+        image: sd-webui
         network_mode: host
-        # ports:
-        #     - "7860:7860"
-        # ports:
-        #     - "127.0.0.1:7860:7860"
-        #   #   host_ip: 127.0.0.1
-        #   published: 7860-7861
-        #   protocol: tcp
-        #   mode: host
         build:
             context: .
-            # args:
-            #     UBUNTU_VERSION: 22.04
-            #     USERNAME: dockeruser
+            dockerfile: sd-webui.Dockerfile
         working_dir: /home/dockeruser/stable-diffusion-webui
         command: /bin/sh -c "while sleep 1000; do :; done"
         tmpfs:
             - /tmp
         volumes:
             - type: bind
-              source: ./packages
+              source: ./packages/sd-webui
               target: /home/dockeruser
             - type: bind
               read_only: true
               source: ./models/stable-diffusion
               target: /home/dockeruser/stable-diffusion-webui/models/Stable-diffusion
             - type: bind
-              source: ./outputs/stable-diffusion-webui/outputs
+              read_only: true
+              source: ./models/Lora
+              target: /home/dockeruser/stable-diffusion-webui/models/Lora
+            - type: bind
+              source: ./outputs/sd-webui/outputs
               target: /home/dockeruser/stable-diffusion-webui/outputs
             - type: bind
-              source: ./outputs/stable-diffusion-webui/log
+              source: ./outputs/sd-webui/log
               target: /home/dockeruser/stable-diffusion-webui/log
         privileged: true
         deploy:

@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+    kohya-webui:
+        container_name: kohya-webui
+        image: kohya-webui
+        network_mode: host
+        build:
+            context: .
+            dockerfile: kohya-webui.Dockerfile
+        working_dir: /home/dockeruser/kohya
+        command: /bin/sh -c "while sleep 1000; do :; done"
+        tmpfs:
+            - /tmp
+        volumes:
+            - type: bind
+              source: ./packages/kohya-webui
+              target: /home/dockeruser
+            - type: bind
+              source: ./training/lora
+              target: /home/dockeruser/kohya/training/lora
+            - type: bind
+              read_only: true
+              source: ./models/stable-diffusion
+              target: /home/dockeruser/kohya/models
+            # - type: bind
+            #   source: ./outputs/stable-diffusion-webui/outputs
+            #   target: /home/dockeruser/stable-diffusion-webui/outputs
+            # - type: bind
+            #   source: ./outputs/stable-diffusion-webui/log
+            #   target: /home/dockeruser/stable-diffusion-webui/log
+        privileged: true
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: nvidia
+                          count: all
+                          capabilities: [gpu]

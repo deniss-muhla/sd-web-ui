@@ -1,11 +1,12 @@
-packages/.*
+packages/*/.*
 
-models/stable-diffusion/*
+models/*/*
 
 training/dreambooth/*
 training/embeddings/*
+training/lora/*
 
-outputs/stable-diffusion-webui/*/*
+outputs/sd-webui/*/*
 
 tmp/*
 !.gitkeep

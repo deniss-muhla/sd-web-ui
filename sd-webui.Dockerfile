@@ -102,4 +102,4 @@ RUN sudo python3 get-pip.py
 RUN sudo pip install torch torchvision 
 
 #Other deps
-RUN sudo pip install xformers fastapi uvicorn[standard] gfpgan clip open-clip-torch
+RUN sudo pip install xformers fastapi uvicorn[standard] gfpgan clip open-clip-torch triton
