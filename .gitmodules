@@ -5,3 +5,6 @@
 [submodule "packages/kohya"]
 	path = packages/kohya-webui/kohya
 	url = https://github.com/bmaltais/kohya_ss.git
+[submodule "packages/subject-focus-webui/ml-subject-focus"]
+	path = packages/subject-focus-webui/ml-subject-focus
+	url = git@github.com:deniss-muhla/ml-subject-focus.git

@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+    subject-focus-webui:
+        container_name: subject-focus-webui
+        image: subject-focus-webui
+        network_mode: host
+        build:
+            context: .
+            dockerfile: subject-focus-webui.Dockerfile
+        working_dir: /home/dockeruser/ml-subject-focus
+        command: /bin/sh -c "while sleep 1000; do :; done"
+        tmpfs:
+            - /tmp
+        volumes:
+            - type: bind
+              source: ./packages/subject-focus-webui
+              target: /home/dockeruser
+            # - type: bind
+            #   read_only: true
+            #   source: ./models/stable-diffusion
+            #   target: /home/dockeruser/stable-diffusion-webui/models/Stable-diffusion
+            # - type: bind
+            #   read_only: true
+            #   source: ./models/Lora
+            #   target: /home/dockeruser/stable-diffusion-webui/models/Lora
+            # - type: bind
+            #   source: ./outputs/sd-webui/outputs
+            #   target: /home/dockeruser/stable-diffusion-webui/outputs
+            # - type: bind
+            #   source: ./outputs/sd-webui/log
+            #   target: /home/dockeruser/stable-diffusion-webui/log
+        privileged: true
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: nvidia
+                          count: all
+                          capabilities: [gpu]
