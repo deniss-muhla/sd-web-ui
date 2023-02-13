@@ -108,4 +108,5 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 WORKDIR $HOME/ml-subject-focus
 COPY packages/subject-focus-webui/ml-subject-focus/requirements.txt ./
+RUN pip install -U autopep8
 RUN pip install --upgrade -r requirements.txt
